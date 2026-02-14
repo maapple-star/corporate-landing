@@ -1,0 +1,610 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maple Star Computers LLC — ICT Solutions UAE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #CC1B1B;
+      --red2: #E52222;
+      --dark: #111111;
+      --charcoal: #1C1C1C;
+      --mid: #2E2E2E;
+      --gray: #6B6B6B;
+      --light: #F0EEE9;
+      --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; z-index: 100;
+      width: 100%;
+      display: flex; align-items: stretch;
+      height: 68px;
+      background: var(--dark);
+    }
+    .nav-logo-block {
+      background: var(--red); display: flex; align-items: center;
+      padding: 0 32px;
+    }
+    .nav-logo-block .name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: white; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-logo-block .sub {
+      font-size: 0.58rem; color: rgba(255,255,255,0.65);
+      letter-spacing: 0.2em; text-transform: uppercase; display: block;
+    }
+    .nav-right {
+      flex: 1; display: flex; align-items: center;
+      justify-content: flex-end; padding: 0 40px; gap: 40px;
+    }
+    .nav-right a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: white; }
+    .nav-cta {
+      background: var(--red); color: white;
+      padding: 0 24px; display: flex; align-items: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+      align-self: stretch;
+    }
+    .nav-cta:hover { background: var(--red2); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh;
+      background: var(--dark); overflow: hidden;
+    }
+    .c-track { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.76,0,0.24,1); }
+    .slide { min-width: 100%; position: relative; }
+    .slide-img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.3) saturate(0.5);
+    }
+    /* Red stripe accent */
+    .red-stripe {
+      position: absolute; top: 0; bottom: 0; left: 0;
+      width: 6px; background: var(--red); z-index: 3;
+    }
+    .slide-box {
+      position: absolute; z-index: 2; bottom: 0; left: 0; right: 0;
+      padding: 0 8% 8%;
+    }
+    .slide-tag {
+      display: inline-block;
+      background: var(--red); color: white;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 4px 14px; margin-bottom: 1.5rem;
+    }
+    .slide-h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 800;
+      line-height: 0.9; text-transform: uppercase;
+      color: white; margin-bottom: 1.5rem;
+    }
+    .slide-h1 em { color: var(--red); font-style: normal; }
+    .slide-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.55);
+      line-height: 1.7; max-width: 560px; margin-bottom: 2.5rem;
+    }
+    .slide-link {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; color: white;
+      text-decoration: none; border-bottom: 1px solid var(--red);
+      padding-bottom: 4px; transition: color 0.2s;
+    }
+    .slide-link:hover { color: var(--red); }
+
+    /* Slide number */
+    .slide-num-overlay {
+      position: absolute; top: 50%; right: 8%;
+      transform: translateY(-50%);
+      z-index: 2;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12rem; font-weight: 800;
+      color: rgba(255,255,255,0.04); line-height: 1;
+      pointer-events: none;
+    }
+
+    /* Carousel controls */
+    .c-controls {
+      position: absolute; top: 50%; right: 3%;
+      transform: translateY(-50%); z-index: 3;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .c-dot {
+      width: 3px; height: 32px;
+      background: rgba(255,255,255,0.2); cursor: pointer;
+      transition: all 0.3s;
+    }
+    .c-dot.active { background: var(--red); height: 56px; }
+    .c-progress {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: rgba(255,255,255,0.1);
+    }
+    .c-bar { height: 100%; background: var(--red); width: 0; transition: width 5s linear; }
+
+    /* ABOUT */
+    .about { padding-top: 68px; }
+    .about-hero-img {
+      width: 100%; height: 60vh; object-fit: cover;
+      filter: saturate(0.7);
+      display: block;
+    }
+    .about-copy {
+      padding: 80px 8%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    }
+    .big-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.5rem;
+    }
+    .h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800;
+      text-transform: uppercase; line-height: 1; color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .h2 em { color: var(--red); font-style: normal; }
+    .body-text { font-size: 0.95rem; color: var(--gray); line-height: 1.85; margin-bottom: 1rem; }
+
+    /* METRICS */
+    .metrics {
+      background: var(--dark);
+      display: grid; grid-template-columns: repeat(4,1fr);
+    }
+    .m-item {
+      padding: 48px 40px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: relative; overflow: hidden;
+    }
+    .m-item:last-child { border-right: none; }
+    .m-item::after {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 0; background: var(--red);
+      transition: width 0.4s ease; z-index: 0;
+    }
+    .m-item:hover::after { width: 4px; }
+    .m-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem; font-weight: 800; color: white;
+      line-height: 1; position: relative; z-index: 1;
+    }
+    .m-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 6px; position: relative; z-index: 1; letter-spacing: 0.1em; }
+
+    /* ETE */
+    .ete {
+      padding: 80px 8%;
+      background: var(--light);
+    }
+    .ete-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+    .ete-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .feature-list { margin-top: 24px; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 0.9rem; color: var(--mid);
+    }
+    .f-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      background: var(--red); color: white;
+      min-width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; flex-shrink: 0;
+    }
+
+    /* ICT */
+    .ict-block {
+      background: var(--charcoal); padding: 64px 8%;
+      display: grid; grid-template-columns: 200px 1fr; gap: 60px; align-items: center;
+    }
+    .ict-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 800; text-transform: uppercase;
+      color: var(--red); line-height: 1;
+    }
+    .ict-body { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.9; }
+
+    /* WHY */
+    .why { padding: 80px 8%; }
+    .why-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+    .why-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .why-text .body-text { margin-bottom: 2rem; }
+
+    /* VALUES */
+    .vals {
+      background: var(--dark); padding: 80px 8%;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+    }
+    .val-item {
+      padding: 40px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .val-item:last-child { border-right: none; }
+    .val-head {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 800; text-transform: uppercase;
+      color: white; margin-bottom: 1rem;
+    }
+    .val-text { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.8; }
+    .val-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+
+    /* SERVICES */
+    .services { padding: 80px 8%; }
+    .services-h { margin-bottom: 48px; }
+    .s-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .s-card {
+      position: relative; overflow: hidden;
+      background: var(--light);
+    }
+    .s-img { width: 100%; height: 220px; object-fit: cover; display: block; filter: saturate(0.7); transition: filter 0.4s, transform 0.4s; }
+    .s-card:hover .s-img { filter: saturate(1); transform: scale(1.04); }
+    .s-body { padding: 24px; }
+    .s-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      color: var(--red); margin-bottom: 6px;
+    }
+    .s-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; font-weight: 800; text-transform: uppercase;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .s-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
+    .s-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .s-tag {
+      font-size: 0.67rem; background: white;
+      border: 1px solid #E0DDD8;
+      color: var(--gray); padding: 2px 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0A0A0A;
+      padding: 72px 8% 40px;
+    }
+    .f-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .f-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .f-brand .name { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; color: white; margin-bottom: 1rem; }
+    .f-brand .line { width: 40px; height: 3px; background: var(--red); margin-bottom: 1rem; }
+    .f-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    .f-col-t {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem;
+    }
+    .f-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .f-links a { font-size: 0.85rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .f-links a:hover { color: white; }
+    .f-addr { font-size: 0.85rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    .f-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 28px; display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: rgba(255,255,255,0.2);
+      font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 900px) {
+      .about-copy, .ete-grid, .why-split { grid-template-columns: 1fr; }
+      .metrics, .vals { grid-template-columns: repeat(2,1fr); }
+      .s-grid { grid-template-columns: 1fr 1fr; }
+      .f-grid { grid-template-columns: 1fr 1fr; }
+      .ict-block { grid-template-columns: 1fr; }
+      .nav-right a, .nav-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo-block">
+    <div>
+      <div class="name">Maple Star Computers</div>
+      <span class="sub">ICT Solutions · UAE</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="#about">About</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#partners">Partners</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="red-stripe"></div>
+  <div class="c-track" id="cTrack">
+    <div class="slide">
+      <img class="slide-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&h=1080&fit=crop&q=80" alt="" />
+      <div class="slide-num-overlay">01</div>
+      <div class="slide-box">
+        <div class="slide-tag">Enterprise ICT Solutions</div>
+        <h1 class="slide-h1">End-to-End<br><em>IT Infrastructure</em></h1>
+        <p class="slide-sub">Enabling UAE organizations to operate with confidence, scale efficiently, and remain secure.</p>
+        <a href="#solutions" class="slide-link">Explore Solutions →</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img class="slide-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=80" alt="" />
+      <div class="slide-num-overlay">02</div>
+      <div class="slide-box">
+        <div class="slide-tag">Systems Integration</div>
+        <h1 class="slide-h1">Trusted<br><em>Digital Partner</em></h1>
+        <p class="slide-sub">Enterprise-grade servers, storage, security and professional services for modern business.</p>
+        <a href="#about" class="slide-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="slide">
+      <img class="slide-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&h=1080&fit=crop&q=80" alt="" />
+      <div class="slide-num-overlay">03</div>
+      <div class="slide-box">
+        <div class="slide-tag">Certified Expertise</div>
+        <h1 class="slide-h1">Security<br><em>Without Limits</em></h1>
+        <p class="slide-sub">Certified experts maximizing availability, adaptability, and security for your organization.</p>
+        <a href="#contact" class="slide-link">Contact Us →</a>
+      </div>
+    </div>
+  </div>
+  <div class="c-controls" id="cDots">
+    <div class="c-dot active" data-i="0"></div>
+    <div class="c-dot" data-i="1"></div>
+    <div class="c-dot" data-i="2"></div>
+  </div>
+  <div class="c-progress"><div class="c-bar" id="cBar"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <img class="about-hero-img" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&h=800&fit=crop&q=80" alt="Maple Star" />
+  <div class="about-copy">
+    <div>
+      <div class="big-label">Who We Are</div>
+      <h2 class="h2">Enterprise<br><em>IT Solutions</em><br>Provider</h2>
+    </div>
+    <div>
+      <p class="body-text">Maple Star Computers LLC delivers end-to-end IT infrastructure solutions that enable organizations across the UAE to operate with confidence, scale efficiently, and remain secure. As a trusted digital transformation provider and systems integrator, we offer enterprise-grade servers and storage, printing solutions, security technologies, and comprehensive professional services.</p>
+      <p class="body-text">Backed by highly certified experts with deep industry experience, our team specializes in integrating complex technologies to maximize availability, adaptability, manageability, and security—ensuring infrastructure solutions align seamlessly with business objectives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="m-item">
+    <div class="m-num">UAE</div>
+    <div class="m-label">Based & Operating</div>
+  </div>
+  <div class="m-item">
+    <div class="m-num">360°</div>
+    <div class="m-label">IT Coverage</div>
+  </div>
+  <div class="m-item">
+    <div class="m-num">5+</div>
+    <div class="m-label">Solution Verticals</div>
+  </div>
+  <div class="m-item">
+    <div class="m-num">24/7</div>
+    <div class="m-label">Support Ready</div>
+  </div>
+</div>
+
+<!-- ETE -->
+<section class="ete" id="solutions">
+  <div class="big-label">Our Approach</div>
+  <h2 class="h2">End-to-End<br><em>Solution Provider</em></h2>
+  <div class="ete-grid">
+    <img class="ete-img" src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=900&h=600&fit=crop&q=80" alt="IT Solutions" />
+    <div>
+      <p class="body-text">Maple Star Computers simplifies IT management by delivering complete end-to-end solutions, allowing customers to rely on one dedicated partner for all technology, support, and service needs.</p>
+      <ul class="feature-list">
+        <li><span class="f-num">01</span> Enterprise-grade server &amp; storage infrastructure</li>
+        <li><span class="f-num">02</span> Advanced networking &amp; wireless solutions</li>
+        <li><span class="f-num">03</span> Comprehensive security &amp; surveillance</li>
+        <li><span class="f-num">04</span> Disaster recovery &amp; business continuity</li>
+        <li><span class="f-num">05</span> IP telephony &amp; unified communications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ICT -->
+<div class="ict-block">
+  <div class="ict-title">About<br/>Maple<br/>Star</div>
+  <p class="ict-body">Maple Star Computers LLC is an Information and Communication Technology (ICT) integration company operating in the UAE. Our customer-focused approach ensures that all solutions are designed and delivered to meet defined requirements while maintaining high standards of quality and customer satisfaction.</p>
+</div>
+
+<!-- WHY MAPLE STAR -->
+<section class="why" id="why">
+  <div class="big-label">Why Choose Us</div>
+  <h2 class="h2">Why<br><em>Maple Star?</em></h2>
+  <div class="why-split">
+    <img class="why-img" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=900&h=700&fit=crop&q=80" alt="Why Maple Star" />
+    <div class="why-text">
+      <p class="body-text">Maple Star Computers LLC delivers cost-effective, scalable IT systems and support services tailored to your business needs. Backed by strong project management expertise and strategic partnerships with leading technology providers, we offer high-quality infrastructure, networking, hardware, and software solutions.</p>
+      <p class="body-text">Helping organizations of all sizes succeed in a rapidly changing digital world—your technology journey starts here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<div class="vals">
+  <div class="val-item">
+    <div class="val-icon">◆</div>
+    <div class="val-head">Vision</div>
+    <p class="val-text">To establish Maple Star Computers LLC as a premier ICT integration provider through innovation, quality, and customer satisfaction.</p>
+  </div>
+  <div class="val-item">
+    <div class="val-icon">◈</div>
+    <div class="val-head">Mission</div>
+    <p class="val-text">Provide end-to-end ICT solutions using innovative technologies fulfilling business objectives with maximum customer satisfaction.</p>
+  </div>
+  <div class="val-item">
+    <div class="val-icon">★</div>
+    <div class="val-head">Excellence</div>
+    <p class="val-text">Customer satisfaction drives our excellence through timely responses and dependable service delivery at every level.</p>
+  </div>
+  <div class="val-item">
+    <div class="val-icon">⬡</div>
+    <div class="val-head">Teamwork</div>
+    <p class="val-text">We succeed as one team—valuing each other's strengths, collaborating to achieve common goals for every client.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-h">
+    <div class="big-label">What We Offer</div>
+    <h2 class="h2">Our<br><em>Solutions</em></h2>
+  </div>
+  <div class="s-grid">
+    <div class="s-card">
+      <img class="s-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop&q=80" alt="Hardware" />
+      <div class="s-body">
+        <div class="s-num">01 — Hardware</div>
+        <div class="s-name">Hardware Infrastructure</div>
+        <p class="s-desc">Complete enterprise hardware solutions from servers to networking.</p>
+        <div class="s-tags">
+          <span class="s-tag">Server</span><span class="s-tag">Storage</span>
+          <span class="s-tag">Network</span><span class="s-tag">Virtualization</span>
+        </div>
+      </div>
+    </div>
+    <div class="s-card">
+      <img class="s-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=300&fit=crop&q=80" alt="Wireless" />
+      <div class="s-body">
+        <div class="s-num">02 — Connectivity</div>
+        <div class="s-name">Wireless Solutions</div>
+        <p class="s-desc">Enterprise wireless networking for seamless organizational connectivity.</p>
+      </div>
+    </div>
+    <div class="s-card">
+      <img class="s-img" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=600&h=300&fit=crop&q=80" alt="Security" />
+      <div class="s-body">
+        <div class="s-num">03 — Security</div>
+        <div class="s-name">Surveillance &amp; Access Control</div>
+        <p class="s-desc">Advanced security systems protecting your physical and digital assets.</p>
+      </div>
+    </div>
+    <div class="s-card">
+      <img class="s-img" src="https://images.unsplash.com/photo-1624953587687-daf255b6b80a?w=600&h=300&fit=crop&q=80" alt="Recovery" />
+      <div class="s-body">
+        <div class="s-num">04 — Recovery</div>
+        <div class="s-name">Disaster Recovery Solutions</div>
+        <p class="s-desc">Comprehensive backup and recovery ensuring business continuity.</p>
+      </div>
+    </div>
+    <div class="s-card">
+      <img class="s-img" src="https://images.unsplash.com/photo-1587119161730-5d22bcbb46bb?w=600&h=300&fit=crop&q=80" alt="Telephony" />
+      <div class="s-body">
+        <div class="s-num">05 — Communications</div>
+        <div class="s-name">IP &amp; Digital Telephony</div>
+        <p class="s-desc">Modern unified communications and VoIP solutions for enterprise.</p>
+      </div>
+    </div>
+    <div class="s-card" style="background:var(--red);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;">
+      <div class="s-num" style="color:rgba(255,255,255,0.6)">06 — Custom</div>
+      <div class="s-name" style="color:white;font-size:1.5rem">Need a Custom Solution?</div>
+      <p class="s-desc" style="color:rgba(255,255,255,0.65);margin:8px 0 20px">Our experts design tailored infrastructure plans.</p>
+      <a href="#contact" style="color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:4px;display:inline-block;">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="f-grid">
+    <div class="f-brand">
+      <div class="name">Maple Star Computers LLC</div>
+      <div class="line"></div>
+      <p>Enterprise ICT integration solutions across the UAE. Your trusted digital transformation partner.</p>
+    </div>
+    <div>
+      <div class="f-col-t">Navigation</div>
+      <ul class="f-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#why">Why Maple Star?</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-t">Solutions</div>
+      <ul class="f-links">
+        <li><a href="#services">Hardware Infrastructure</a></li>
+        <li><a href="#services">Wireless Solutions</a></li>
+        <li><a href="#services">Surveillance</a></li>
+        <li><a href="#services">Disaster Recovery</a></li>
+        <li><a href="#services">IP Telephony</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-t">Contact</div>
+      <p class="f-addr">
+        Maple Star Computers LLC<br />United Arab Emirates<br /><br />
+        info@maplestarcomputers.com<br />+971 XX XXX XXXX
+      </p>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2024 Maple Star Computers LLC. All rights reserved.</span>
+    <span style="color:var(--red)">ICT Integration · UAE</span>
+  </div>
+</footer>
+
+<script>
+  const track = document.getElementById('cTrack');
+  const dots = document.querySelectorAll('.c-dot');
+  const bar = document.getElementById('cBar');
+  let cur = 0;
+  const total = 3;
+
+  function go(n) {
+    cur = (n + total) % total;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    bar.style.transition = 'none';
+    bar.style.width = '0';
+    bar.offsetHeight;
+    bar.style.transition = 'width 5s linear';
+    bar.style.width = '100%';
+  }
+
+  dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.i)));
+  bar.style.width = '100%';
+  let t = setInterval(() => go(cur + 1), 5000);
+  track.addEventListener('mouseenter', () => clearInterval(t));
+  track.addEventListener('mouseleave', () => { t = setInterval(() => go(cur + 1), 5000); });
+</script>
+</body>
+</html>
