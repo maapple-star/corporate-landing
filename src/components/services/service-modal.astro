@@ -1,0 +1,217 @@
+---
+interface Props {
+  id: string;
+  module: string;
+  title: string;
+  description: string;
+  modalDescription?: string;
+  icon?: string;
+  features?: string[];
+  benefits?: string[];
+  quoteHref?: string;
+}
+
+const {
+  id,
+  module,
+  title,
+  description,
+  modalDescription,
+  icon,
+  features,
+  benefits,
+  quoteHref = "#contact",
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class="svc-modal-overlay fixed inset-0 z-999 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200"
+  role="dialog"
+  aria-modal="true"
+  aria-label={title}
+>
+  {/* Backdrop */}
+  <div
+    class="svc-modal-backdrop absolute inset-0 bg-void/80 backdrop-blur-sm"
+    data-modal-close={id}
+  >
+  </div>
+
+  {/* Panel */}
+  <div
+    class="svc-modal-panel relative w-full max-w-[480px] max-h-[90vh] overflow-y-auto bg-panel border border-border shadow-[0_0_60px_rgba(0,212,255,0.08)] translate-y-4 transition-transform duration-200"
+  >
+    {/* Header */}
+    <div class="relative bg-panel2 border-b border-border p-6 overflow-hidden">
+      {/* Cyan top accent */}
+      <div
+        class="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-cyan via-cyan/60 to-transparent"
+      >
+      </div>
+      {/* Corner decoration */}
+      <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden pointer-events-none">
+        <div
+          class="absolute top-0 right-0 w-full h-full border-t-2 border-r-2 border-cyan/20"
+          style="clip-path: polygon(100% 0, 100% 100%, 0 0)"
+        >
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4">
+        {/* Icon */}
+        <div
+          class="shrink-0 w-12 h-12 bg-panel border border-border2 flex items-center justify-center relative"
+        >
+          <div class="absolute inset-0 bg-linear-to-br from-cyan/10 to-transparent"></div>
+          {
+            icon ? (
+              <span class="text-cyan text-xl relative z-1" set:html={icon} />
+            ) : (
+              <svg
+                class="text-cyan relative z-1"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <>
+                  <rect x="2" y="3" width="20" height="14" rx="1" />
+                  <path d="M8 21h8M12 17v4" />
+                </>
+              </svg>
+            )
+          }
+        </div>
+        {/* Title & description */}
+        <div class="flex-1 min-w-0 pr-8">
+          <div class="text-[0.55rem] tracking-[0.25em] text-cyan uppercase mb-1">{module}</div>
+          <h3
+            class="font-orbitron text-white text-[1rem] font-bold uppercase tracking-[0.04em] leading-[1.2] mb-3"
+          >
+            {title}
+          </h3>
+          <p class="text-[0.8rem] text-text leading-[1.7]">
+            {modalDescription || description}
+          </p>
+        </div>
+      </div>
+
+      {/* Close */}
+      <button
+        class="absolute top-4 right-4 w-7 h-7 flex items-center justify-center text-text hover:text-cyan border border-transparent hover:border-border transition-colors duration-150"
+        data-modal-close={id}
+        aria-label="Close"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path
+            d="M1 1l12 12M13 1L1 13"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    {/* Body */}
+    <div class="p-6 space-y-6">
+      {/* Features */}
+      {
+        features && features.length > 0 && (
+          <div>
+            <div class="inline-flex items-center gap-2 mb-4">
+              <span class="text-[0.6rem] font-orbitron tracking-[0.2em] uppercase text-cyan border border-border2 px-3 py-1 bg-panel2">
+                Features
+              </span>
+              <div class="h-px w-8 bg-linear-to-r from-cyan/40 to-transparent" />
+            </div>
+            <ul class="space-y-[10px]">
+              {features.map((feat) => (
+                <li class="flex items-start gap-3 group">
+                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-border2 bg-panel2 group-hover:border-cyan/40 transition-colors duration-150">
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                      <path
+                        d="M1.5 4.5l2.5 2.5 3.5-4"
+                        stroke="var(--color-cyan)"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="text-[0.8rem] text-text-bright leading-[1.6]">{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {/* Benefits */}
+      {
+        benefits && benefits.length > 0 && (
+          <div>
+            <div class="inline-flex items-center gap-2 mb-4">
+              <span class="text-[0.6rem] font-orbitron tracking-[0.2em] uppercase text-green border border-green/20 px-3 py-1 bg-green-dim">
+                Benefits
+              </span>
+              <div class="h-px w-8 bg-linear-to-r from-green/40 to-transparent" />
+            </div>
+            <ul class="space-y-[10px]">
+              {benefits.map((benefit) => (
+                <li class="flex items-start gap-3 group">
+                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-green/20 bg-green-dim group-hover:border-green/40 transition-colors duration-150">
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                      <path
+                        d="M1.5 4.5l2.5 2.5 3.5-4"
+                        stroke="var(--color-green)"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span class="text-[0.8rem] text-text-bright leading-[1.6]">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+
+    {/* Footer */}
+    <div class="px-6 pb-6 flex gap-3">
+      <a
+        href={quoteHref}
+        class="btn-cyber flex-1 justify-center text-[0.6rem]"
+        data-modal-close={id}
+      >
+        Get a Quote
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path
+            d="M2 6h8M6 2l4 4-4 4"
+            stroke="currentColor"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+      <button class="btn-ghost flex-1 justify-center" data-modal-close={id}> Close </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .svc-modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .svc-modal-overlay.is-open .svc-modal-panel {
+    transform: translateY(0);
+  }
+</style>

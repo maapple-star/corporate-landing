@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #050810;
+  --color-deep: #070c1a;
+  --color-panel: #0d1525;
+  --color-panel2: #111d33;
+  --color-panel3: #16253e;
+  --color-cyan: #00d4ff;
+  --color-cyan2: #00b8e0;
+  --color-cyan-dim: #004a5a;
+  --color-green: #00ff88;
+  --color-green-dim: #003322;
+  --color-text: #a0b8d8;
+  --color-text-bright: #c8dcf0;
+  --color-border: rgba(0, 212, 255, 0.12);
+  --color-border2: rgba(0, 212, 255, 0.25);
+
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-exo: "Exo 2", sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-text);
+    font-family: var(--font-exo);
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-cyan-dim);
+  }
+}
+
+@layer components {
+  /* NAV */
+  .nav-links a::before {
+    content: "//";
+    margin-right: 4px;
+    color: var(--color-cyan-dim);
+    font-size: 0.65rem;
+  }
+  .nav-links a:hover {
+    color: var(--color-cyan);
+  }
+
+  .nav-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-cyan);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+  .nav-btn:hover {
+    color: var(--color-void);
+  }
+  .nav-btn:hover::before {
+    transform: translateX(0);
+  }
+
+  /* HERO SLIDE */
+  .h-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+  }
+  .h-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
+      linear-gradient(
+        to right,
+        rgba(5, 8, 16, 0.9) 0%,
+        rgba(5, 8, 16, 0.3) 50%,
+        transparent 100%
+      );
+  }
+
+  /* BADGE */
+  .h-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--color-cyan);
+    border-radius: 50%;
+    animation: pulse 1.5s ease infinite;
+  }
+
+  /* SLIDE CONTROLS */
+  #hCtrls {
+    gap: 14px;
+  }
+  .h-ctrl {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border2);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .h-ctrl.active {
+    width: 10px;
+    height: 10px;
+    background: var(--color-cyan);
+    box-shadow: 0 0 8px var(--color-cyan), 0 0 18px color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  }
+  .h-ctrl.active::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--color-cyan) 50%, transparent);
+  }
+
+  /* SECTION EYEBROW */
+  .sec-eyebrow::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: var(--color-cyan);
+    flex-shrink: 0;
+  }
+
+  /* METRICS CELL */
+  .m-cell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-cyan), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .m-cell:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* ABOUT IMAGE WRAP */
+  .about-img-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow:
+      inset 0 0 30px rgba(0, 212, 255, 0.1),
+      0 0 30px rgba(0, 212, 255, 0.08);
+    pointer-events: none;
+  }
+
+  /* FEATURE LIST */
+  .feature-list li:hover {
+    border-color: var(--color-border2);
+    background: var(--color-panel);
+  }
+
+  /* VALUE CARD */
+  .val-card::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 24px;
+    top: 20px;
+    font-family: var(--font-orbitron);
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0, 212, 255, 0.04);
+    line-height: 1;
+  }
+  .val-card:hover {
+    border-color: var(--color-border2);
+  }
+
+  /* SERVICE CARD */
+  .svc-card:hover {
+    border-color: var(--color-border2);
+    transform: translateY(-4px);
+  }
+  .svc-card:hover .svc-img {
+    filter: saturate(0.7);
+  }
+
+  /* FOOTER LINKS */
+  .ft-ul a::before {
+    content: "›";
+    color: var(--color-cyan-dim);
+  }
+  .ft-ul a:hover {
+    color: var(--color-cyan);
+  }
+
+  /* BTN CYBER */
+  .btn-cyber {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-cyan);
+    color: var(--color-void);
+    padding: 13px 28px;
+    font-family: var(--font-orbitron);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      0 calc(100% - 8px)
+    );
+  }
+  .btn-cyber:hover {
+    background: var(--color-green);
+  }
+
+  /* BTN GHOST */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--color-border2);
+    color: var(--color-text-bright);
+    padding: 13px 28px;
+    font-family: var(--font-exo);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-cyan);
+    color: var(--color-cyan);
+  }
+}
+
+/* KEYFRAMES */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes statusFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,99 @@
+---
+import HeroSlide from "./hero-slide.astro";
+
+const slides = [
+  {
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&h=1080&fit=crop&q=80",
+    badge: "Enterprise ICT Solutions",
+    headingLine1: "END-TO-END",
+    headingLine2: "IT INFRA",
+    headingLine3: "SOLUTIONS",
+    description:
+      "Enabling UAE organizations to operate with confidence, scale efficiently, and remain secure through world-class technology integration.",
+    primaryCta: { label: "Explore Solutions", href: "#solutions" },
+    secondaryCta: { label: "Learn More", href: "#about" },
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=80",
+    badge: "Systems Integration",
+    headingLine1: "TRUSTED",
+    headingLine2: "DIGITAL",
+    headingLine3: "PARTNER",
+    description:
+      "Enterprise-grade servers, storage, security technologies, and professional services for the modern digital enterprise.",
+    primaryCta: { label: "Our Services", href: "#solutions" },
+    secondaryCta: { label: "Contact", href: "#contact" },
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&h=1080&fit=crop&q=80",
+    badge: "Certified Expertise",
+    headingLine1: "SECURITY",
+    headingLine2: "WITHOUT",
+    headingLine3: "LIMITS",
+    description:
+      "Certified experts maximizing availability, adaptability, and security infrastructure aligned with your business objectives.",
+    primaryCta: { label: "Why Us", href: "#why" },
+    secondaryCta: { label: "Get in Touch", href: "#contact" },
+  },
+];
+---
+
+<!-- HERO -->
+<section class="relative h-screen overflow-hidden" id="home">
+  <div class="absolute top-24 left-[6%] z-[3] w-[60px] h-[60px] border-t border-l border-cyan">
+  </div>
+  <div
+    class="absolute bottom-20 right-[6%] z-[3] w-[60px] h-[60px] border-b border-r border-cyan-dim"
+  >
+  </div>
+  <div
+    class="flex h-full transition-transform duration-[800ms] [transition-timing-function:cubic-bezier(0.76,0,0.24,1)]"
+    id="hSlides"
+  >
+    {slides.map((slide) => <HeroSlide {...slide} />)}
+  </div>
+  <div
+    id="hNum"
+    class="absolute right-[6%] top-1/2 -translate-y-1/2 z-[3] font-orbitron text-[6rem] font-black text-cyan/5 leading-none select-none"
+  >
+    01
+  </div>
+  <div class="absolute bottom-12 left-[6%] z-[3] flex items-center" id="hCtrls">
+    {slides.map((_, i) => <div class:list={["h-ctrl", { active: i === 0 }]} data-i={i} />)}
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 z-[3] h-[3px] bg-border">
+    <div
+      id="sFill"
+      class="h-full bg-linear-to-r from-cyan to-green w-0 [animation:statusFill_5s_linear_infinite]"
+    >
+    </div>
+  </div>
+</section>
+
+<script>
+  const slidesEl = document.getElementById("hSlides")!;
+  const controls = document.querySelectorAll(".h-ctrl")!;
+  const numEl = document.getElementById("hNum")!;
+  const fill = document.getElementById("sFill")!;
+  let cur = 0;
+  const total = controls.length;
+
+  function go(n: number) {
+    cur = (n + total) % total;
+    slidesEl.style.transform = `translateX(-${cur * 100}%)`;
+    controls.forEach((c, i) => c.classList.toggle("active", i === cur));
+    numEl.textContent = String(cur + 1).padStart(2, "0");
+    fill.style.animation = "none";
+    fill.offsetHeight;
+    fill.style.animation = "statusFill 5s linear infinite";
+  }
+
+  controls.forEach((c) => c.addEventListener("click", () => go(+c.getAttribute("data-i")!)));
+  let t = setInterval(() => go(cur + 1), 5000);
+  slidesEl.addEventListener("mouseenter", () => clearInterval(t));
+  slidesEl.addEventListener("mouseleave", () => {
+    t = setInterval(() => go(cur + 1), 5000);
+  });
+</script>
