@@ -1,0 +1,29 @@
+---
+interface Props {
+  name: string;
+  viewBox?: string;
+  svgPath: string;
+  fillRule?: "nonzero" | "evenodd" | "inherit";
+  clipRule?: string;
+}
+
+const { name, viewBox = "0 0 800 800", svgPath, fillRule, clipRule } = Astro.props;
+---
+
+<div
+  class="group relative bg-panel border border-border p-8 flex items-center justify-center aspect-square transition-[border-color,background-color] duration-300 hover:bg-panel2 hover:border-border2"
+  aria-label={name}
+>
+  <svg
+    class="w-20 h-20 text-text transition-[color,transform] duration-300 group-hover:text-cyan group-hover:scale-110"
+    viewBox={viewBox}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d={svgPath}
+      fill-rule={fillRule}
+      clip-rule={clipRule}
+    />
+  </svg>
+</div>
