@@ -1468,7 +1468,7 @@
       const slides = document.querySelectorAll(".slide");
       const dots = document.querySelectorAll(".c-dot");
 
-      function goToSlide(n) {
+      function goToSlide(n: number) {
         slides[current].classList.remove("active");
         dots[current].classList.remove("active");
         current = n;
