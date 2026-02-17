@@ -4,33 +4,28 @@ import { services } from "./service-data";
 ---
 
 <!-- SERVICES -->
-<section class="px-[5%] pb-[100px] relative z-1" id="services">
-  <div class="mb-12">
-    <div
-      class="sec-eyebrow text-[0.65rem] tracking-[0.3em] uppercase text-cyan mb-[1.2rem] flex items-center gap-[10px]"
-    >
-      System.Solutions
-    </div>
+<section class="px-[6%] pb-[100px]" id="services">
+  <div class="mb-10">
+    <div class="label-tag">What We Offer</div>
     <h2
-      class="font-orbitron text-[clamp(1.6rem,3.5vw,3rem)] font-bold text-white leading-[1.1] uppercase mb-6 tracking-[0.02em]"
+      class="font-syne text-[clamp(1.8rem,3.5vw,3rem)] font-extrabold text-dark leading-[1.1] mb-6"
     >
-      Our <span class="text-cyan">Solutions</span>
+      Our <span class="text-blue2">Solutions</span>
     </h2>
   </div>
-  <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+  <div class="grid gap-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
     {services.map((service) => <ServiceCard {...service} />)}
     <div
-      class="svc-card bg-panel2 border border-border overflow-hidden transition-[border-color,transform] duration-300 flex flex-col justify-center p-8"
+      class="svc-card bg-blue2 border border-blue2 overflow-hidden transition-[border-color,box-shadow] duration-300 flex flex-col justify-center p-10"
     >
-      <div class="text-[0.6rem] tracking-[0.2em] text-cyan uppercase mb-[6px]">Module_Custom</div>
-      <div class="font-orbitron text-[1rem] font-bold uppercase text-cyan mb-2 tracking-[0.04em]">
-        Custom Solution?
+      <div class="font-syne text-[1.2rem] font-bold text-white mb-3">
+        Need a Custom Solution?
       </div>
-      <p class="text-[0.8rem] text-text leading-[1.7] my-[10px] mb-5">
-        Our experts design tailored infrastructure plans for your requirements.
+      <p class="text-[0.82rem] text-white/75 leading-[1.7] mb-6">
+        Our experts will design a tailored infrastructure plan for your specific requirements.
       </p>
-      <a href="#contact" class="btn-cyber" style="width:fit-content;font-size:0.6rem"
-        >Init Contact</a
+      <a href="#contact" class="btn-outline inline-block w-fit"
+        >Contact Us &rarr;</a
       >
     </div>
   </div>

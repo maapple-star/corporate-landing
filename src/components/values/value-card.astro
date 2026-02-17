@@ -1,0 +1,21 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<div
+  class="val-card border-t-[3px] border-t-blue2 py-8 px-6 bg-off transition-[transform,box-shadow] duration-300"
+>
+  <div class="text-blue2 mb-4" set:html={icon} />
+  <div class="font-syne text-[1.1rem] font-bold text-dark mb-3">
+    {title}
+  </div>
+  <p class="text-[0.85rem] text-mid leading-[1.7]">
+    {description}
+  </p>
+</div>

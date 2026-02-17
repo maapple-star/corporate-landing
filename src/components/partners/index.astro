@@ -53,35 +53,31 @@ const trustItems = [
   {
     label: "Authorized Reseller",
     description: "Certified partner status with major manufacturers",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>`,
   },
   {
     label: "Direct Supply Chain",
     description: "Sourced directly for best prices and availability",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path><path d="M10 12h4"></path></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue2"><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path><path d="M10 12h4"></path></svg>`,
   },
   {
     label: "Quick Turnaround",
     description: "Fast fulfillment on bulk and custom orders",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue2"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>`,
   },
 ];
 ---
 
 <!-- PARTNERS -->
-<section id="partners" class="py-[100px] px-[5%] bg-deep border-t border-border relative z-[1]">
+<section id="partners" class="py-[100px] px-[6%] bg-off">
   <header class="mb-16 text-center">
-    <div
-      class="sec-eyebrow text-[0.65rem] mx-auto max-w-fit tracking-[0.3em] uppercase text-cyan mb-[1.2rem] flex items-center gap-[10px]"
-    >
-      System.Partnerships
-    </div>
+    <div class="label-tag" style="margin:0 auto 1.5rem;display:table">Our Partners</div>
     <h2
-      class="font-orbitron text-[clamp(1.6rem,3.5vw,3rem)] font-bold text-white leading-[1.1] uppercase mb-6 tracking-[0.02em]"
+      class="font-syne text-[clamp(1.8rem,3.5vw,3rem)] font-extrabold text-dark leading-[1.1] mb-6"
     >
-      Strategic Technology<br /><span class="text-cyan">Partners</span>
+      Strategic Technology <span class="text-blue2">Partners</span>
     </h2>
-    <p class="text-text text-[0.95rem] leading-[1.8] max-w-2xl mx-auto">
+    <p class="text-mid text-[0.95rem] leading-[1.8] max-w-2xl mx-auto">
       We work directly with leading technology manufacturers to bring you the best hardware at
       competitive prices. Our partnerships ensure quality, availability, and expert support.
     </p>
@@ -102,7 +98,7 @@ const trustItems = [
   </div>
 
   <!-- Trust Indicators -->
-  <div class="grid grid-cols-3 gap-8 max-[900px]:grid-cols-1 border-t border-border pt-16">
+  <div class="grid grid-cols-3 gap-8 max-[900px]:grid-cols-1 border-t border-[#e2e8f0] pt-16">
     {
       trustItems.map((item) => (
         <TrustItem label={item.label} description={item.description}>

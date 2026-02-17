@@ -2,10 +2,9 @@ export const services = [
   {
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop&q=80",
     alt: "Hardware",
-    module: "Module_01",
-    title: "Hardware Infra",
+    title: "Hardware Infrastructure",
     description: "Complete enterprise hardware from servers to networking equipment.",
-    tags: ["Servers", "Storage", "Network", "Virtual"],
+    tags: ["Server Infrastructure", "Storage", "Networking", "Virtualization"],
     modalDescription:
       "We deliver end-to-end enterprise hardware infrastructure — from rack-mounted servers and high-capacity storage arrays to fully managed networking equipment. Our solutions are engineered for reliability, scalability, and peak performance.",
     icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="5" rx="1"/><rect x="2" y="11" width="20" height="5" rx="1"/><circle cx="18" cy="6.5" r="1"/><circle cx="18" cy="13.5" r="1"/><path d="M2 19h20"/></svg>',
@@ -28,9 +27,8 @@ export const services = [
   {
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=300&fit=crop&q=80",
     alt: "Wireless",
-    module: "Module_02",
     title: "Wireless Solutions",
-    description: "Enterprise wireless networking for seamless organizational connectivity.",
+    description: "Enterprise-grade wireless networking for seamless organizational connectivity.",
     modalDescription:
       "Our Wireless Solutions deliver reliable, high-performance connectivity across your entire facility. From small offices to large campuses, we design and implement wireless networks that provide seamless roaming, high throughput, and enterprise-grade security.",
     icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>',
@@ -54,8 +52,7 @@ export const services = [
   {
     image: "https://images.unsplash.com/photo-1557862921-37829c790f19?w=600&h=300&fit=crop&q=80",
     alt: "Security",
-    module: "Module_03",
-    title: "Surveillance & Access",
+    title: "Surveillance & Access Control",
     description: "Advanced security systems protecting physical and digital assets.",
     modalDescription:
       "We deploy comprehensive surveillance and access control solutions that safeguard your people, assets, and infrastructure. From IP camera networks to biometric entry systems, every deployment is tailored to your security posture.",
@@ -79,8 +76,7 @@ export const services = [
   {
     image: "https://images.unsplash.com/photo-1624953587687-daf255b6b80a?w=600&h=300&fit=crop&q=80",
     alt: "Recovery",
-    module: "Module_04",
-    title: "Disaster Recovery",
+    title: "Disaster Recovery Solutions",
     description: "Comprehensive backup and recovery ensuring business continuity.",
     modalDescription:
       "Protect your critical data and systems with our Disaster Recovery solutions. We architect resilient backup strategies and failover environments that minimize downtime and data loss when the unexpected happens.",
@@ -104,9 +100,8 @@ export const services = [
   {
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=300&fit=crop&q=80",
     alt: "Telephony",
-    module: "Module_05",
-    title: "IP Telephony",
-    description: "Modern unified communications and VoIP solutions for enterprise.",
+    title: "IP & Digital Telephony",
+    description: "Modern unified communications and VoIP solutions for enterprise needs.",
     modalDescription:
       "Transform your business communications with our IP Telephony and Unified Communications platform. We implement scalable VoIP systems that integrate voice, video, messaging, and collaboration into a single streamlined solution.",
     icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.13-1.13a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',

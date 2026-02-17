@@ -5,37 +5,42 @@ interface Props {
   headingLine1: string;
   headingLine2: string;
   headingLine3: string;
+  accentLine?: number;
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 }
 
-const { image, badge, headingLine1, headingLine2, headingLine3, description, primaryCta, secondaryCta } = Astro.props;
+const { image, badge, headingLine1, headingLine2, headingLine3, accentLine = 1, description, primaryCta, secondaryCta } = Astro.props;
 ---
 
-<div class="h-slide min-w-full relative">
+<div class="h-slide min-w-full relative overflow-hidden">
   <img
-    class="w-full h-full object-cover brightness-[0.2] saturate-[0.4]"
+    class="w-full h-full object-cover brightness-[0.28] saturate-[0.6]"
     src={image}
     alt=""
   />
-  <div class="absolute top-1/2 left-[6%] -translate-y-1/2 z-[3] max-w-[700px]">
+  <!-- Diagonal accent -->
+  <div class="absolute top-0 right-0 w-[45%] h-full bg-blue2 [clip-path:polygon(30%_0%,100%_0%,100%_100%,0%_100%)] opacity-[0.12] z-[1]"></div>
+  <div class="absolute top-1/2 left-[6%] -translate-y-1/2 z-[3] max-w-[620px]">
     <div
-      class="h-badge inline-flex items-center gap-2 border border-border2 px-4 py-[6px] mb-8 text-[0.65rem] tracking-[0.2em] uppercase text-cyan"
+      class="font-syne text-[0.7rem] text-blue3 tracking-[0.3em] mb-8"
     >
       {badge}
     </div>
     <h1
-      class="font-orbitron text-[clamp(2rem,5vw,4.5rem)] font-black leading-none text-white mb-6 uppercase tracking-[0.02em]"
+      class="font-syne text-[clamp(2.2rem,4.5vw,4rem)] font-[800] leading-[1.05] text-white mb-6"
     >
-      <span class="text-cyan">{headingLine1}</span><br />{headingLine2}<br /><span class="text-green">{headingLine3}</span>
+      {accentLine === 1 ? <span class="text-blue3">{headingLine1}</span> : headingLine1}<br />
+      {accentLine === 2 ? <span class="text-blue3">{headingLine2}</span> : headingLine2}<br />
+      {accentLine === 3 ? <span class="text-blue3">{headingLine3}</span> : headingLine3}
     </h1>
-    <p class="text-[0.95rem] text-text leading-[1.8] max-w-[520px] mb-10">
+    <p class="text-[1rem] text-white/65 leading-[1.8] max-w-[500px] mb-10">
       {description}
     </p>
-    <div class="flex gap-4 flex-wrap">
-      <a href={primaryCta.href} class="btn-cyber">{primaryCta.label}</a>
-      <a href={secondaryCta.href} class="btn-ghost">{secondaryCta.label}</a>
+    <div class="flex gap-4 items-center flex-wrap">
+      <a href={primaryCta.href} class="btn-primary">{primaryCta.label}</a>
+      <a href={secondaryCta.href} class="btn-outline">{secondaryCta.label}</a>
     </div>
   </div>
 </div>

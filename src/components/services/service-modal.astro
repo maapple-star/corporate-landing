@@ -1,7 +1,6 @@
 ---
 interface Props {
   id: string;
-  module: string;
   title: string;
   description: string;
   modalDescription?: string;
@@ -13,7 +12,6 @@ interface Props {
 
 const {
   id,
-  module,
   title,
   description,
   modalDescription,
@@ -33,43 +31,35 @@ const {
 >
   {/* Backdrop */}
   <div
-    class="svc-modal-backdrop absolute inset-0 bg-void/80 backdrop-blur-sm"
+    class="svc-modal-backdrop absolute inset-0 bg-dark/80 backdrop-blur-sm"
     data-modal-close={id}
   >
   </div>
 
   {/* Panel */}
   <div
-    class="svc-modal-panel relative w-full max-w-[480px] max-h-[90vh] overflow-y-auto bg-panel border border-border shadow-[0_0_60px_rgba(0,212,255,0.08)] translate-y-4 transition-transform duration-200"
+    class="svc-modal-panel relative w-full max-w-[480px] max-h-[90vh] overflow-y-auto bg-white border border-[#e2e8f0] shadow-[0_0_60px_rgba(30,58,138,0.08)] translate-y-4 transition-transform duration-200"
   >
     {/* Header */}
-    <div class="relative bg-panel2 border-b border-border p-6 overflow-hidden">
-      {/* Cyan top accent */}
+    <div class="relative bg-off border-b border-[#e2e8f0] p-6 overflow-hidden">
+      {/* Blue top accent */}
       <div
-        class="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-cyan via-cyan/60 to-transparent"
+        class="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-blue2 via-blue2/60 to-transparent"
       >
-      </div>
-      {/* Corner decoration */}
-      <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden pointer-events-none">
-        <div
-          class="absolute top-0 right-0 w-full h-full border-t-2 border-r-2 border-cyan/20"
-          style="clip-path: polygon(100% 0, 100% 100%, 0 0)"
-        >
-        </div>
       </div>
 
       <div class="flex items-start gap-4">
         {/* Icon */}
         <div
-          class="shrink-0 w-12 h-12 bg-panel border border-border2 flex items-center justify-center relative"
+          class="shrink-0 w-12 h-12 bg-blue-light border border-[#e2e8f0] flex items-center justify-center relative"
         >
-          <div class="absolute inset-0 bg-linear-to-br from-cyan/10 to-transparent"></div>
+          <div class="absolute inset-0 bg-linear-to-br from-blue2/10 to-transparent"></div>
           {
             icon ? (
-              <span class="text-cyan text-xl relative z-1" set:html={icon} />
+              <span class="text-blue2 text-xl relative z-1" set:html={icon} />
             ) : (
               <svg
-                class="text-cyan relative z-1"
+                class="text-blue2 relative z-1"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -89,13 +79,12 @@ const {
         </div>
         {/* Title & description */}
         <div class="flex-1 min-w-0 pr-8">
-          <div class="text-[0.55rem] tracking-[0.25em] text-cyan uppercase mb-1">{module}</div>
           <h3
-            class="font-orbitron text-white text-[1rem] font-bold uppercase tracking-[0.04em] leading-[1.2] mb-3"
+            class="font-syne text-dark text-[1rem] font-bold leading-[1.2] mb-3"
           >
             {title}
           </h3>
-          <p class="text-[0.8rem] text-text leading-[1.7]">
+          <p class="text-[0.8rem] text-mid leading-[1.7]">
             {modalDescription || description}
           </p>
         </div>
@@ -103,7 +92,7 @@ const {
 
       {/* Close */}
       <button
-        class="absolute top-4 right-4 w-7 h-7 flex items-center justify-center text-text hover:text-cyan border border-transparent hover:border-border transition-colors duration-150"
+        class="absolute top-4 right-4 w-7 h-7 flex items-center justify-center text-mid hover:text-blue2 border border-transparent hover:border-[#e2e8f0] transition-colors duration-150"
         data-modal-close={id}
         aria-label="Close"
       >
@@ -124,26 +113,26 @@ const {
         features && features.length > 0 && (
           <div>
             <div class="inline-flex items-center gap-2 mb-4">
-              <span class="text-[0.6rem] font-orbitron tracking-[0.2em] uppercase text-cyan border border-border2 px-3 py-1 bg-panel2">
+              <span class="text-[0.6rem] font-syne tracking-[0.2em] uppercase text-blue2 border border-[#e2e8f0] px-3 py-1 bg-blue-pale">
                 Features
               </span>
-              <div class="h-px w-8 bg-linear-to-r from-cyan/40 to-transparent" />
+              <div class="h-px w-8 bg-linear-to-r from-blue2/40 to-transparent" />
             </div>
             <ul class="space-y-[10px]">
               {features.map((feat) => (
                 <li class="flex items-start gap-3 group">
-                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-border2 bg-panel2 group-hover:border-cyan/40 transition-colors duration-150">
+                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-[#e2e8f0] bg-blue-light group-hover:border-blue2/40 transition-colors duration-150">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
                       <path
                         d="M1.5 4.5l2.5 2.5 3.5-4"
-                        stroke="var(--color-cyan)"
+                        stroke="var(--color-blue2)"
                         stroke-width="1.2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
                   </span>
-                  <span class="text-[0.8rem] text-text-bright leading-[1.6]">{feat}</span>
+                  <span class="text-[0.8rem] text-dark leading-[1.6]">{feat}</span>
                 </li>
               ))}
             </ul>
@@ -156,26 +145,26 @@ const {
         benefits && benefits.length > 0 && (
           <div>
             <div class="inline-flex items-center gap-2 mb-4">
-              <span class="text-[0.6rem] font-orbitron tracking-[0.2em] uppercase text-green border border-green/20 px-3 py-1 bg-green-dim">
+              <span class="text-[0.6rem] font-syne tracking-[0.2em] uppercase text-blue3 border border-blue3/20 px-3 py-1 bg-blue-light">
                 Benefits
               </span>
-              <div class="h-px w-8 bg-linear-to-r from-green/40 to-transparent" />
+              <div class="h-px w-8 bg-linear-to-r from-blue3/40 to-transparent" />
             </div>
             <ul class="space-y-[10px]">
               {benefits.map((benefit) => (
                 <li class="flex items-start gap-3 group">
-                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-green/20 bg-green-dim group-hover:border-green/40 transition-colors duration-150">
+                  <span class="shrink-0 mt-[1px] w-5 h-5 flex items-center justify-center border border-blue3/20 bg-blue-light group-hover:border-blue3/40 transition-colors duration-150">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
                       <path
                         d="M1.5 4.5l2.5 2.5 3.5-4"
-                        stroke="var(--color-green)"
+                        stroke="var(--color-blue3)"
                         stroke-width="1.2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
                   </span>
-                  <span class="text-[0.8rem] text-text-bright leading-[1.6]">{benefit}</span>
+                  <span class="text-[0.8rem] text-dark leading-[1.6]">{benefit}</span>
                 </li>
               ))}
             </ul>
@@ -188,7 +177,7 @@ const {
     <div class="px-6 pb-6 flex gap-3">
       <a
         href={quoteHref}
-        class="btn-cyber flex-1 justify-center text-[0.6rem]"
+        class="btn-primary flex-1 justify-center text-[0.8rem]"
         data-modal-close={id}
       >
         Get a Quote
@@ -201,7 +190,12 @@ const {
             stroke-linejoin="round"></path>
         </svg>
       </a>
-      <button class="btn-ghost flex-1 justify-center" data-modal-close={id}> Close </button>
+      <button
+        class="flex-1 justify-center inline-flex items-center gap-2 border border-[#e2e8f0] text-mid py-[14px] px-8 text-[0.85rem] transition-colors duration-200 hover:border-blue2 hover:text-blue2 cursor-pointer bg-transparent"
+        data-modal-close={id}
+      >
+        Close
+      </button>
     </div>
   </div>
 </div>
