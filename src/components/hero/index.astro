@@ -73,27 +73,31 @@ const slides = [
 </section>
 
 <script>
-  const slidesEl = document.getElementById("hSlides")!;
-  const controls = document.querySelectorAll(".h-ctrl")!;
-  const numEl = document.getElementById("hNum")!;
-  const fill = document.getElementById("sFill")!;
-  let cur = 0;
-  const total = controls.length;
+  function initHero() {
+    const slidesEl = document.getElementById("hSlides")!;
+    const controls = document.querySelectorAll(".h-ctrl")!;
+    const numEl = document.getElementById("hNum")!;
+    const fill = document.getElementById("sFill")!;
+    let cur = 0;
+    const total = controls.length;
 
-  function go(n: number) {
-    cur = (n + total) % total;
-    slidesEl.style.transform = `translateX(-${cur * 100}%)`;
-    controls.forEach((c, i) => c.classList.toggle("active", i === cur));
-    numEl.textContent = String(cur + 1).padStart(2, "0");
-    fill.style.animation = "none";
-    fill.offsetHeight;
-    fill.style.animation = "statusFill 5s linear infinite";
+    function go(n: number) {
+      cur = (n + total) % total;
+      slidesEl.style.transform = `translateX(-${cur * 100}%)`;
+      controls.forEach((c, i) => c.classList.toggle("active", i === cur));
+      numEl.textContent = String(cur + 1).padStart(2, "0");
+      fill.style.animation = "none";
+      fill.offsetHeight;
+      fill.style.animation = "statusFill 5s linear infinite";
+    }
+
+    controls.forEach((c) => c.addEventListener("click", () => go(+c.getAttribute("data-i")!)));
+    let t = setInterval(() => go(cur + 1), 5000);
+    slidesEl.addEventListener("mouseenter", () => clearInterval(t));
+    slidesEl.addEventListener("mouseleave", () => {
+      t = setInterval(() => go(cur + 1), 5000);
+    });
   }
 
-  controls.forEach((c) => c.addEventListener("click", () => go(+c.getAttribute("data-i")!)));
-  let t = setInterval(() => go(cur + 1), 5000);
-  slidesEl.addEventListener("mouseenter", () => clearInterval(t));
-  slidesEl.addEventListener("mouseleave", () => {
-    t = setInterval(() => go(cur + 1), 5000);
-  });
+  document.addEventListener("DOMContentLoaded", initHero);
 </script>

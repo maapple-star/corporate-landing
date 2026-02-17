@@ -17,7 +17,7 @@ import { services } from "./service-data";
       Our <span class="text-cyan">Solutions</span>
     </h2>
   </div>
-  <div class="grid grid-cols-3 gap-4 max-[900px]:grid-cols-2">
+  <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
     {services.map((service) => <ServiceCard {...service} />)}
     <div
       class="svc-card bg-panel2 border border-border overflow-hidden transition-[border-color,transform] duration-300 flex flex-col justify-center p-8"

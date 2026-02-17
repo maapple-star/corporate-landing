@@ -15,15 +15,11 @@ const { name, viewBox = "0 0 800 800", svgPath, fillRule, clipRule } = Astro.pro
   aria-label={name}
 >
   <svg
-    class="w-20 h-20 text-text transition-[color,transform] duration-300 group-hover:text-cyan group-hover:scale-110"
+    class="w-20 h-20 text-text transition-all duration-300 group-hover:text-cyan group-hover:scale-110"
     viewBox={viewBox}
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d={svgPath}
-      fill-rule={fillRule}
-      clip-rule={clipRule}
-    />
+    <path d={svgPath} fill-rule={fillRule} clip-rule={clipRule}></path>
   </svg>
 </div>
