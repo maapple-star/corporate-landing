@@ -4,8 +4,6 @@ import { values } from "./values-data";
 ---
 
 <!-- VALUES -->
-<div
-  class="px-[6%] mb-[100px] grid grid-cols-4 gap-6 max-[900px]:grid-cols-2 max-[900px]:grid-cols-1"
->
+<div class="px-[6%] mb-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
   {values.map((value) => <ValueCard {...value} />)}
 </div>
