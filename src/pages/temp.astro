@@ -639,6 +639,64 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
+
+      .service-cell-wide {
+        grid-column: span 2;
+      }
+
+      /* ── RESPONSIVE ─────────────────────────────── */
+      @media (max-width: 768px) {
+        /* Nav */
+        nav { padding: 0 1.25rem; }
+        .nav-links a { padding: 0 0.75rem; font-size: 0.55rem; }
+
+        /* Carousel */
+        .slide { flex-direction: column; }
+        .slide-left { width: 100%; padding: 7rem 1.5rem 2rem; }
+        .slide-right { display: none; }
+        .slide-index { font-size: 6rem; }
+        .carousel-nav { left: 1.5rem; }
+
+        /* About */
+        .about { grid-template-columns: 1fr; }
+        .about-left,
+        .about-right { padding: 3rem 1.5rem; }
+        .about-left { border-right: none; border-bottom: 1px solid rgba(0, 102, 255, 0.15); }
+
+        /* E2E Banner */
+        .e2e-banner { flex-direction: column; padding: 3rem 1.5rem; text-align: center; }
+
+        /* Services */
+        .services-header { grid-template-columns: 1fr; }
+        .services-header-left,
+        .services-header-right { padding: 3rem 1.5rem; }
+        .services-header-left { border-right: none; border-bottom: 1px solid rgba(0, 102, 255, 0.15); }
+        .service-table { grid-template-columns: 1fr; }
+        .service-cell { padding: 2rem 1.5rem; border-right: none; }
+        .service-cell-wide { grid-column: span 1; }
+        .service-cell-wide .service-cell-list { flex-direction: column; }
+
+        /* Why */
+        .why-hero { grid-template-columns: 1fr; }
+        .why-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(0, 102, 255, 0.15); }
+        .why-right { padding: 2rem 1.5rem; }
+        .vme-blocks { grid-template-columns: 1fr; }
+        .vme-block { padding: 2.5rem 1.5rem; border-right: none; }
+
+        /* Footer */
+        .footer-top { grid-template-columns: 1fr; }
+        .footer-col { padding: 2rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(0, 102, 255, 0.1); }
+        .footer-bottom { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links { display: none; }
+        .slide-title { font-size: 2.5rem; }
+        .section-title { font-size: 2rem; }
+        .big-quote { font-size: 1.3rem; }
+        .e2e-text { font-size: 1.8rem; }
+        .vme-block-title { font-size: 1.8rem; }
+      }
     </style>
   </head>
   <body>
@@ -1227,7 +1285,7 @@
           </ul>
         </div>
 
-        <div class="service-cell" style="grid-column: span 2;">
+        <div class="service-cell service-cell-wide">
           <div class="service-cell-num">05</div>
           <div class="service-cell-icon">
             <svg
