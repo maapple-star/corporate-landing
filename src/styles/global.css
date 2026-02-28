@@ -38,7 +38,16 @@
 }
 
 @layer components {
-  /* HERO SLIDE overlay */
+  /* HERO SLIDE */
+  .h-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .h-slide.active {
+    opacity: 1;
+  }
   .h-slide::after {
     content: "";
     position: absolute;

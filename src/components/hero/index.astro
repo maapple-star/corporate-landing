@@ -5,10 +5,7 @@ import { slides } from "./data";
 
 <!-- HERO -->
 <section class="mt-[72px] relative h-[calc(100vh-72px)] overflow-hidden bg-dark" id="home">
-  <div
-    class="flex h-full transition-transform duration-800 ease-[cubic-bezier(0.65,0,0.35,1)]"
-    id="hSlides"
-  >
+  <div class="relative h-full" id="hSlides">
     {slides.map((slide) => <HeroSlide {...slide} />)}
   </div>
   <div class="absolute bottom-0 left-0 right-0 z-3 h-[3px] bg-white/10">
@@ -25,25 +22,27 @@ import { slides } from "./data";
 
 <script>
   function initHero() {
-    const slidesEl = document.getElementById("hSlides")!;
+    const slideEls = document.querySelectorAll<HTMLElement>(".h-slide");
     const controls = document.querySelectorAll(".h-ctrl")!;
     const numEl = document.getElementById("hNum")!;
     const fill = document.getElementById("sFill")!;
     let cur = 0;
     const total = controls.length;
+    const intervalInSeconds = 6;
 
     function go(n: number) {
       cur = (n + total) % total;
-      slidesEl.style.transform = `translateX(-${cur * 100}%)`;
+      slideEls.forEach((s, i) => s.classList.toggle("active", i === cur));
       controls.forEach((c, i) => c.classList.toggle("active", i === cur));
       numEl.textContent = String(cur + 1).padStart(2, "0");
       fill.style.animation = "none";
       fill.offsetHeight;
-      fill.style.animation = "progress 5s linear infinite";
+      fill.style.animation = `progress ${intervalInSeconds}s linear infinite`;
     }
 
     controls.forEach((c) => c.addEventListener("click", () => go(+c.getAttribute("data-i")!)));
-    setInterval(() => go(cur + 1), 5000);
+    go(0);
+    setInterval(() => go(cur + 1), intervalInSeconds * 1000);
   }
 
   document.addEventListener("DOMContentLoaded", initHero);
