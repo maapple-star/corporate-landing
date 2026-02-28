@@ -1,0 +1,83 @@
+---
+import Tag from "./tag.astro";
+import Card from "./card.astro";
+import Form from "./form.astro";
+
+import { contactEmail, contactPhone, address } from "../../constants/info";
+import { tags } from "./data";
+---
+
+<!-- CONTACT FORM -->
+<section class="px-[6%] pb-[100px] pt-[100px]" id="contact">
+  <!-- Section header -->
+  <div class="mb-14">
+    <div class="label-tag">Contact Us</div>
+    <h2
+      class="font-syne text-[clamp(1.8rem,3.5vw,3rem)] font-extrabold text-dark leading-[1.1] mb-4"
+    >
+      Get in <span class="text-blue2">Touch</span>
+    </h2>
+    <p class="text-[0.92rem] text-mid leading-[1.8] max-w-[520px]">
+      Our team of certified engineers is ready to architect your next-generation infrastructure.
+    </p>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="grid grid-cols-[1fr_1.4fr] gap-[80px] max-[960px]:grid-cols-1 max-[960px]:gap-[60px]">
+    <!-- LEFT: Contact info -->
+    <div class="flex flex-col gap-8">
+      <!-- Info blocks -->
+      <div class="flex flex-col gap-[2px]">
+        <Card title="Address">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={address.map}
+            class="text-[0.88rem] text-dark leading-[1.7] hover:text-blue2 transition-colors duration-200 block"
+          >
+            {address.line1}<br />
+            {address.line2}
+          </a>
+        </Card>
+
+        <Card title="Email & Phone">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`mailto:${contactEmail}`}
+            class="text-[0.88rem] text-dark leading-[1.7] hover:text-blue2 transition-colors duration-200 block"
+          >
+            {contactEmail}
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`tel:${contactPhone.value}`}
+            class="text-[0.88rem] text-dark leading-[1.7] hover:text-blue2 transition-colors duration-200 block"
+          >
+            {contactPhone.label}
+          </a>
+        </Card>
+
+        <Card title="Response Time">
+          <p class="text-[0.88rem] text-mid leading-[1.7]">
+            Average response within 24 hours.<br />
+            Enterprise inquiries prioritized.
+          </p>
+        </Card>
+      </div>
+
+      <!-- Capability tags -->
+      <div>
+        <div class="text-[0.58rem] tracking-[0.28em] uppercase text-blue2 mb-3 font-syne">
+          Domains
+        </div>
+        <div class="flex flex-wrap gap-[6px]">
+          {tags.map((tag) => <Tag>{tag}</Tag>)}
+        </div>
+      </div>
+    </div>
+
+    <Form />
+  </div>
+</section>

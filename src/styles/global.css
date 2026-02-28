@@ -73,7 +73,7 @@
     color: var(--color-blue2);
     padding: 6px 14px;
     font-size: 0.72rem;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
@@ -135,6 +135,14 @@
     border: none;
     cursor: pointer;
     transition: background 0.2s;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      &:hover {
+        background: var(--color-blue2);
+      }
+    }
   }
   .btn-primary:hover {
     background: var(--color-blue);
@@ -168,4 +176,165 @@
   to {
     width: 100%;
   }
+}
+
+.scroll-shadow {
+  --fade-size: 1.5rem;
+  --scroll-shadow-bg: var(--background);
+  --scroll-shadow-fg: var(--foreground);
+}
+@supports (color: color-mix(in lab, red, red)) {
+  .scroll-shadow {
+    --scroll-shadow-fg: color-mix(in oklab, var(--foreground), transparent 85%);
+  }
+}
+.scroll-shadow {
+  background:
+    linear-gradient(var(--scroll-shadow-bg) 35%, var(--scroll-shadow-bg)) top,
+    linear-gradient(var(--scroll-shadow-bg), var(--scroll-shadow-bg) 65%) bottom,
+    linear-gradient(to bottom, var(--scroll-shadow-fg), transparent) top,
+    linear-gradient(to top, var(--scroll-shadow-fg), transparent) bottom;
+}
+@supports (color: color-mix(in lab, red, red)) {
+  .scroll-shadow {
+    background:
+      linear-gradient(
+          var(--scroll-shadow-bg) 35%,
+          color-mix(in oklab, var(--scroll-shadow-bg), transparent 100%)
+        )
+        top,
+      linear-gradient(
+          color-mix(in oklab, var(--scroll-shadow-bg), transparent 100%),
+          var(--scroll-shadow-bg) 65%
+        )
+        bottom,
+      linear-gradient(to bottom, var(--scroll-shadow-fg), transparent) top,
+      linear-gradient(to top, var(--scroll-shadow-fg), transparent) bottom;
+  }
+}
+
+.scroll-shadow {
+  background-repeat: no-repeat;
+  background-size:
+    100% var(--fade-size),
+    100% var(--fade-size),
+    100% var(--fade-size),
+    100% var(--fade-size);
+  background-attachment: local, local, scroll, scroll;
+}
+.scroll-shadow-mask {
+  --fade-size: 2rem;
+  --fade-top-offset: 0px;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+.scroll-shadow-mask[data-shadow="top"],
+.scroll-shadow-mask[data-shadow="bottom"],
+.scroll-shadow-mask[data-shadow="both"] {
+  -webkit-mask-mode: alpha;
+  -webkit-mask-source-type: alpha;
+  -webkit-mask-source-type: alpha;
+  mask-mode: alpha;
+}
+.scroll-shadow-mask[data-shadow="top"] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black 100%
+  );
+}
+.scroll-shadow-mask[data-shadow="bottom"] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+}
+.scroll-shadow-mask[data-shadow="both"] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--fade-top-offset),
+    transparent var(--fade-top-offset),
+    black calc(var(--fade-top-offset) + var(--fade-size)),
+    black calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+}
+.scroll-shadow-mask:not([data-shadow]),
+.scroll-shadow-mask[data-shadow="false"] {
+  mask-image: none;
 }

@@ -38,20 +38,20 @@ const {
 
   {/* Panel */}
   <div
-    class="svc-modal-panel relative w-full max-w-[480px] max-h-[90vh] overflow-y-auto bg-white border border-[#e2e8f0] shadow-[0_0_60px_rgba(30,58,138,0.08)] translate-y-4 transition-transform duration-200"
+    class="svc-modal-panel relative w-full max-w-[480px] max-h-[90vh] overflow-hidden bg-white shadow-[0_0_60px_rgba(30,58,138,0.08)] translate-y-4 transition-transform duration-200 border-blue2 flex flex-col"
   >
     {/* Header */}
-    <div class="relative bg-off border-b border-[#e2e8f0] p-6 overflow-hidden">
+    <div class="relative shrink-0 bg-blue border-b border-[#e2e8f0] p-6 overflow-hidden">
       {/* Blue top accent */}
-      <div
+      <!-- <div
         class="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-blue2 via-blue2/60 to-transparent"
       >
-      </div>
+      </div> -->
 
       <div class="flex items-start gap-4">
         {/* Icon */}
         <div
-          class="shrink-0 w-12 h-12 bg-blue-light border border-[#e2e8f0] flex items-center justify-center relative"
+          class="shrink-0 w-12 h-12 bg-blue-light border rounded-full border-[#e2e8f0] flex items-center justify-center relative"
         >
           <div class="absolute inset-0 bg-linear-to-br from-blue2/10 to-transparent"></div>
           {
@@ -79,12 +79,10 @@ const {
         </div>
         {/* Title & description */}
         <div class="flex-1 min-w-0 pr-8">
-          <h3
-            class="font-syne text-dark text-[1rem] font-bold leading-[1.2] mb-3"
-          >
+          <h3 class="font-syne text-white text-[1rem] font-bold leading-[1.2] mb-3">
             {title}
           </h3>
-          <p class="text-[0.8rem] text-mid leading-[1.7]">
+          <p class="text-[0.8rem] text-white/75 leading-[1.7]">
             {modalDescription || description}
           </p>
         </div>
@@ -107,7 +105,7 @@ const {
     </div>
 
     {/* Body */}
-    <div class="p-6 space-y-6">
+    <div class="p-6 space-y-6 flex-1 overflow-y-auto scroll-shadow-mask" data-shadow="both">
       {/* Features */}
       {
         features && features.length > 0 && (
@@ -174,7 +172,7 @@ const {
     </div>
 
     {/* Footer */}
-    <div class="px-6 pb-6 flex gap-3">
+    <div class="px-6 pb-6 flex gap-3 shrink-0">
       <a
         href={quoteHref}
         class="btn-primary flex-1 justify-center text-[0.8rem]"

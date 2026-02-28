@@ -68,6 +68,25 @@ const trustItems = [
 ];
 ---
 
+<style>
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .partners-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .partners-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
+
 <!-- PARTNERS -->
 <section id="partners" class="py-[100px] px-[6%] bg-off">
   <header class="mb-16 text-center">
@@ -83,18 +102,31 @@ const trustItems = [
     </p>
   </header>
 
-  <!-- Partner Logo Grid -->
-  <div class="grid grid-cols-4 gap-4 max-[900px]:grid-cols-2 mb-16 max-w-5xl mx-auto">
-    {
-      partners.map((partner) => (
-        <PartnerCard
-          name={partner.name}
-          svgPath={partner.svgPath}
-          fillRule={partner.fillRule}
-          clipRule={partner.clipRule}
-        />
-      ))
-    }
+  <!-- Partner Logo Marquee -->
+  <div class="overflow-hidden relative mb-16">
+    <div
+      class="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-off to-transparent z-10 pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-off to-transparent z-10 pointer-events-none"
+    >
+    </div>
+
+    <div class="flex gap-6 w-max partners-marquee">
+      {
+        [...partners, ...partners, ...partners].map((partner) => (
+          <div class="w-40 shrink-0">
+            <PartnerCard
+              name={partner.name}
+              svgPath={partner.svgPath}
+              fillRule={partner.fillRule}
+              clipRule={partner.clipRule}
+            />
+          </div>
+        ))
+      }
+    </div>
   </div>
 
   <!-- Trust Indicators -->

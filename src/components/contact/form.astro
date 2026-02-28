@@ -1,0 +1,259 @@
+---
+
+---
+
+<div class="relative">
+  <!-- Form panel -->
+  <div class="bg-white border border-[#e2e8f0]" id="contactFormPanel">
+    <!-- Top accent bar -->
+    <div class="h-[2px] bg-linear-to-r from-blue2 via-blue2/40 to-transparent"></div>
+
+    <form id="contactForm" class="p-8 flex flex-col gap-6" novalidate>
+      <!-- Row 1: Name + Company -->
+      <div class="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1">
+        <div class="form-field-wrap">
+          <label class="form-label" for="cf-name">Full Name <span class="text-blue2">*</span></label
+          >
+          <input
+            id="cf-name"
+            name="name"
+            type="text"
+            required
+            placeholder="John Smith"
+            class="form-input"
+          />
+        </div>
+        <div class="form-field-wrap">
+          <label class="form-label" for="cf-company">Company</label>
+          <input
+            id="cf-company"
+            name="company"
+            type="text"
+            placeholder="Acme Corp"
+            class="form-input"
+          />
+        </div>
+      </div>
+
+      <!-- Row 2: Email + Phone -->
+      <div class="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1">
+        <div class="form-field-wrap">
+          <label class="form-label" for="cf-email">Email <span class="text-blue2">*</span></label>
+          <input
+            id="cf-email"
+            name="email"
+            type="email"
+            required
+            placeholder="you@company.com"
+            class="form-input"
+          />
+        </div>
+        <div class="form-field-wrap">
+          <label class="form-label" for="cf-phone"
+            >Phone <span class="text-mid/50">optional</span></label
+          >
+          <input
+            id="cf-phone"
+            name="phone"
+            type="tel"
+            placeholder="+971 XX XXX XXXX"
+            class="form-input"
+          />
+        </div>
+      </div>
+
+      <!-- Service Interest -->
+      <div class="form-field-wrap">
+        <label class="form-label" for="cf-service"
+          >Service Interest <span class="text-blue2">*</span></label
+        >
+        <div class="relative">
+          <select
+            id="cf-service"
+            name="service"
+            required
+            class="form-input form-select appearance-none w-full pr-10"
+          >
+            <option value="" disabled selected>Select a service...</option>
+            <option value="hardware">Hardware Infrastructure</option>
+            <option value="wireless">Wireless Solutions</option>
+            <option value="surveillance">Surveillance &amp; Access Control</option>
+            <option value="recovery">Disaster Recovery</option>
+            <option value="telephony">IP Telephony</option>
+            <option value="custom">Custom Solution</option>
+          </select>
+          <!-- Custom chevron -->
+          <div class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-blue2/60">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="form-field-wrap">
+        <label class="form-label" for="cf-message">Message <span class="text-blue2">*</span></label>
+        <textarea
+          id="cf-message"
+          name="message"
+          required
+          rows="5"
+          placeholder="Describe your infrastructure requirements..."
+          class="form-input resize-none"></textarea>
+      </div>
+
+      <!-- Error msg -->
+      <div id="cfError" class="hidden text-[0.78rem] text-red-400/80 tracking-[0.05em]">
+        Please fill in all required fields.
+      </div>
+
+      <!-- Submit -->
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <span class="text-[0.62rem] tracking-[0.15em] text-mid/40 font-syne">Secure Form</span>
+        <button type="submit" class="btn-primary" id="cfSubmit">
+          <span id="cfBtnText">Send Message</span>
+          <svg
+            id="cfBtnIcon"
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            style="flex-shrink:0"
+          >
+            <path
+              d="M1 7H13M13 7L8 2M13 7L8 12"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="square"></path>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success state (hidden initially) -->
+  <div
+    id="cfSuccess"
+    class="hidden absolute inset-0 bg-white border border-blue2/30 flex-col items-center justify-center text-center p-12"
+  >
+    <div
+      class="h-[2px] absolute top-0 left-0 right-0 bg-linear-to-r from-transparent via-blue2 to-transparent"
+    >
+    </div>
+    <div class="w-16 h-16 border border-blue2/40 flex items-center justify-center mb-6">
+      <svg width="28" height="20" viewBox="0 0 28 20" fill="none">
+        <path d="M2 10L10 18L26 2" stroke="#1d4ed8" stroke-width="2" stroke-linecap="square"></path>
+      </svg>
+    </div>
+    <div class="font-syne text-[1.1rem] font-bold text-dark mb-3">Message Sent</div>
+    <p class="text-[0.88rem] text-mid leading-[1.8] max-w-[340px]">
+      Your request has been logged. A Maple Star engineer will respond within 24 hours.
+    </p>
+    <div class="mt-8 text-[0.75rem] tracking-[0.15em] text-blue2/60 font-syne">
+      We'll be in touch
+    </div>
+    <button id="cfNewEnquiry" class="btn-primary mt-5" type="button"> New Enquiry </button>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const success = document.getElementById("cfSuccess") as HTMLElement;
+  const panel = document.getElementById("contactFormPanel") as HTMLElement;
+  const errMsg = document.getElementById("cfError") as HTMLElement;
+  const btnText = document.getElementById("cfBtnText") as HTMLElement;
+  const btnIcon = document.getElementById("cfBtnIcon") as HTMLElement;
+  const newEnquiry = document.getElementById("cfNewEnquiry") as HTMLButtonElement;
+  const submitCta = document.getElementById("cfSubmit") as HTMLButtonElement;
+
+  newEnquiry.addEventListener("click", () => {
+    success.style.display = "";
+    success.classList.add("hidden");
+    form.reset();
+    btnText.textContent = "Send Message";
+    btnIcon.style.display = "";
+    submitCta.disabled = false;
+    form.disabled = false;
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+    const service = (form.elements.namedItem("service") as HTMLSelectElement).value;
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+    if (!name || !email || !service || !message) {
+      errMsg.classList.remove("hidden");
+      return;
+    }
+
+    errMsg.classList.add("hidden");
+
+    // Simulate sending
+    btnText.textContent = "Sending...";
+    btnIcon.style.display = "none";
+    form.disabled = true;
+    submitCta.disabled = true;
+
+    setTimeout(() => {
+      panel.style.position = "relative";
+      success.classList.remove("hidden");
+      success.style.display = "flex";
+    }, 900);
+  });
+
+  // Hide error on input
+  form.addEventListener("input", () => {
+    errMsg.classList.add("hidden");
+  });
+</script>
+
+<style>
+  .form-label {
+    display: block;
+    font-family: var(--font-syne);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    background: var(--color-off);
+    border: 1px solid #e2e8f0;
+    color: var(--color-text);
+    padding: 11px 14px;
+    font-family: var(--font-dm);
+    font-size: 0.88rem;
+    outline: none;
+    border-radius: 0;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .form-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .form-input:focus {
+    border-color: var(--color-blue2);
+    box-shadow:
+      0 0 0 1px rgba(29, 78, 216, 0.12),
+      inset 0 0 12px rgba(29, 78, 216, 0.04);
+  }
+
+  .form-input:focus-visible {
+    outline: none;
+  }
+
+  .form-select option {
+    background: var(--color-off);
+    color: var(--color-text);
+  }
+</style>

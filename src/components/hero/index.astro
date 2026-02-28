@@ -1,64 +1,24 @@
 ---
 import HeroSlide from "./hero-slide.astro";
-
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&h=1080&fit=crop&q=80",
-    badge: "01 — Enterprise ICT Solutions",
-    headingLine1: "Powering",
-    headingLine2: "Infrastructure",
-    headingLine3: "Across UAE",
-    accentLine: 1,
-    description:
-      "End-to-end IT solutions enabling organizations to operate with confidence, scale efficiently, and stay secure.",
-    primaryCta: { label: "Our Solutions", href: "#solutions" },
-    secondaryCta: { label: "Learn More", href: "#about" },
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=80",
-    badge: "02 — Systems Integration",
-    headingLine1: "Your Trusted",
-    headingLine2: "Technology",
-    headingLine3: "Partner",
-    accentLine: 2,
-    description:
-      "Enterprise-grade servers, storage, security, and professional services tailored to your business.",
-    primaryCta: { label: "Explore Now", href: "#solutions" },
-    secondaryCta: { label: "Contact Us", href: "#contact" },
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&h=1080&fit=crop&q=80",
-    badge: "03 — Certified Expertise",
-    headingLine1: "Maximum",
-    headingLine2: "Security",
-    headingLine3: "& Availability",
-    accentLine: 2,
-    description:
-      "Certified experts integrating complex technologies to maximize availability, adaptability, and security.",
-    primaryCta: { label: "Why Us", href: "#why" },
-    secondaryCta: { label: "Get in Touch", href: "#contact" },
-  },
-];
+import { slides } from "./data";
 ---
 
 <!-- HERO -->
 <section class="mt-[72px] relative h-[calc(100vh-72px)] overflow-hidden bg-dark" id="home">
   <div
-    class="flex h-full transition-transform duration-[800ms] [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]"
+    class="flex h-full transition-transform duration-800 ease-[cubic-bezier(0.65,0,0.35,1)]"
     id="hSlides"
   >
     {slides.map((slide) => <HeroSlide {...slide} />)}
   </div>
-  <div class="absolute bottom-0 left-0 right-0 z-[3] h-[3px] bg-white/10">
-    <div id="sFill" class="h-full bg-blue2 w-0 [animation:progress_5s_linear_infinite]"></div>
+  <div class="absolute bottom-0 left-0 right-0 z-3 h-[3px] bg-white/10">
+    <div id="sFill" class="h-full bg-blue2 w-0 animate-[progress_5s_linear_infinite]"></div>
   </div>
-  <div class="absolute bottom-10 left-[6%] z-[3] flex items-center" id="hCtrls">
+  <div class="absolute bottom-10 left-[6%] z-3 flex items-center" id="hCtrls">
     {slides.map((_, i) => <div class:list={["h-ctrl", { active: i === 0 }]} data-i={i} />)}
   </div>
-  <div class="absolute right-[6%] bottom-10 z-[3] flex items-baseline gap-1">
-    <span id="hNum" class="font-syne text-[3rem] font-[800] text-white/15">01</span>
+  <div class="absolute right-[6%] bottom-10 z-3 flex items-baseline gap-1">
+    <span id="hNum" class="font-syne text-[3rem] font-extrabold text-white/15">01</span>
     <span class="text-[0.8rem] text-white/30">/ 03</span>
   </div>
 </section>

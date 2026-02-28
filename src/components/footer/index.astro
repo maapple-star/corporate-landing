@@ -1,0 +1,141 @@
+---
+import { contactEmail, contactPhone, address } from "../../constants/info";
+import Link from "./link.astro";
+
+const links = [
+  {
+    id: "navigation",
+    title: "Navigation",
+    links: [
+      {
+        id: "home",
+        label: "Home",
+        href: "#home",
+      },
+      {
+        id: "why",
+        label: "Why Maple Star?",
+        href: "#why",
+      },
+      {
+        id: "solutions",
+        label: "Solutions",
+        href: "#solutions",
+      },
+      {
+        id: "partners",
+        label: "Partners",
+        href: "#partners",
+      },
+      {
+        id: "contact",
+        label: "Contact",
+        href: "#contact",
+      },
+    ],
+  },
+  {
+    id: "solutions",
+    title: "Solutions",
+    links: [
+      {
+        id: "hardware-infrastructure",
+        label: "Hardware Infrastructure",
+        href: "#services",
+      },
+      {
+        id: "wireless-solutions",
+        label: "Wireless Solutions",
+        href: "#services",
+      },
+      {
+        id: "surveillance",
+        label: "Surveillance",
+        href: "#services",
+      },
+      {
+        id: "disaster-recovery",
+        label: "Disaster Recovery",
+        href: "#services",
+      },
+      {
+        id: "ip-telephony",
+        label: "IP Telephony",
+        href: "#services",
+      },
+    ],
+  },
+];
+
+const socialLinks = [
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/maplestarcomputers",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/maplestarcomputers",
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/maplestarcomputers",
+  },
+];
+---
+
+<footer class="bg-dark text-white pt-20 px-[6%] pb-10" id="footer">
+  <div class="grid grid-cols-1 gap-[60px] mb-[60px] md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <div class="font-syne text-[1rem] font-bold text-white mb-4">Maple Star Computers LLC</div>
+      <p class="text-[0.85rem] text-[#64748b] leading-[1.8]">
+        Enterprise ICT integration solutions across the UAE. Your trusted digital transformation
+        partner.
+      </p>
+    </div>
+
+    {
+      links.map((link) => (
+        <div>
+          <div class="text-[0.65rem] tracking-[0.2em] uppercase text-blue3 mb-6">{link.title}</div>
+          <ul class="list-none flex flex-col gap-3">
+            {link.links.map((link) => (
+              <li>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+
+    <div>
+      <div class="text-[0.65rem] tracking-[0.2em] uppercase text-blue3 mb-6">Contact</div>
+      <p class="text-[0.85rem] text-[#64748b] leading-[1.8]">
+        <span> {address.line1} </span>
+        <br />
+        <span class="mb-2 block"> {address.line2} </span>
+        <br />
+        <Link href={`mailto:${contactEmail}`}>
+          {contactEmail}
+        </Link>
+        <br />
+        <Link href={`tel:${contactPhone.value}`} class="mb-2 block">{contactPhone.label}</Link>
+        <br />
+        {
+          socialLinks.map((link) => (
+            <Link href={link.href} class="mb-2 block">
+              {link.label}
+            </Link>
+          ))
+        }
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-text pt-7 flex justify-between text-[0.75rem] text-mid">
+    <span>&copy; {new Date().getFullYear()} Maple Star Computers LLC. All rights reserved.</span>
+    <span class="text-blue2">ICT Integration &middot; UAE</span>
+  </div>
+</footer>

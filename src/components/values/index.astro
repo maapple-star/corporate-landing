@@ -6,4 +6,9 @@ import { values } from "./values-data";
 <!-- VALUES -->
 <div class="px-[6%] mb-[100px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
   {values.map((value) => <ValueCard {...value} />)}
+  <img
+    class="w-full h-[480px] object-cover saturate-[0.8] col-span-full"
+    src="/corporate-landing/assets/skyline.jpeg"
+    alt="Dubai Skyline"
+  />
 </div>
