@@ -1,6 +1,7 @@
 ---
 import { contactEmail, contactPhone, address } from "../../constants/info";
 import Link from "./link.astro";
+import LogoFull from "../../assets/logo-full-white.png";
 
 const links = [
   {
@@ -88,9 +89,9 @@ const socialLinks = [
 
 <footer class="bg-dark text-white pt-20 px-[6%] pb-10" id="footer">
   <div class="grid grid-cols-1 gap-[60px] mb-[60px] md:grid-cols-2 lg:grid-cols-4">
-    <div>
-      <div class="font-syne text-[1rem] font-bold text-white mb-4">Maple Star Computers LLC</div>
-      <p class="text-[0.85rem] text-[#64748b] leading-[1.8]">
+    <div class="space-y-6">
+      <img {...LogoFull} alt="Maple Star Computers LLC" />
+      <p class="text-[0.85rem] text-white/80 leading-[1.8]">
         Enterprise ICT integration solutions across the UAE. Your trusted digital transformation
         partner.
       </p>
@@ -113,7 +114,7 @@ const socialLinks = [
 
     <div>
       <div class="text-[0.65rem] tracking-[0.2em] uppercase text-blue3 mb-6">Contact</div>
-      <p class="text-[0.85rem] text-[#64748b] leading-[1.8]">
+      <p class="text-[0.85rem] text-white/80 leading-[1.8]">
         <span> {address.line1} </span>
         <br />
         <span class="mb-2 block"> {address.line2} </span>
@@ -134,7 +135,7 @@ const socialLinks = [
       </p>
     </div>
   </div>
-  <div class="border-t border-text pt-7 flex justify-between text-[0.75rem] text-mid">
+  <div class="border-t border-text pt-7 flex justify-between text-[0.75rem] text-white/80">
     <span>&copy; {new Date().getFullYear()} Maple Star Computers LLC. All rights reserved.</span>
     <span class="text-blue2">ICT Integration &middot; UAE</span>
   </div>
