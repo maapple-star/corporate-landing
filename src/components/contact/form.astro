@@ -192,17 +192,42 @@
 
     errMsg.classList.add("hidden");
 
-    // Simulate sending
     btnText.textContent = "Sending...";
     btnIcon.style.display = "none";
-    form.disabled = true;
     submitCta.disabled = true;
 
-    setTimeout(() => {
-      panel.style.position = "relative";
-      success.classList.remove("hidden");
-      success.style.display = "flex";
-    }, 900);
+    const company = (form.elements.namedItem("company") as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
+
+    const formData = new URLSearchParams();
+    formData.append("entry.1551788274", name);
+    formData.append("entry.258875177", company);
+    formData.append("entry.2115009961", email);
+    formData.append("entry.1705859692", phone);
+    formData.append("entry.1454745499", service);
+    formData.append("entry.493394043", message);
+
+    fetch(
+      "https://docs.google.com/forms/d/e/1FAIpQLScvRurZRqMFs9kRrOJLUQudoHoR85hwvk-BYw6pAokOOlzvMg/formResponse",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      },
+    )
+      .then(() => {
+        panel.style.position = "relative";
+        success.classList.remove("hidden");
+        success.style.display = "flex";
+      })
+      .catch(() => {
+        errMsg.textContent = "Something went wrong. Please try again.";
+        errMsg.classList.remove("hidden");
+        btnText.textContent = "Send Message";
+        btnIcon.style.display = "";
+        submitCta.disabled = false;
+      });
   });
 
   // Hide error on input
