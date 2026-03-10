@@ -64,18 +64,6 @@ const links = [
         label: "IP Telephony",
         href: "#services",
       },
-      {
-        id: "refurbished",
-        label: "Refurbished Laptops",
-        href: "https://refurbished.maplestar.ae",
-        external: true,
-      },
-      {
-        id: "repair",
-        label: "Repair Your Laptop",
-        href: "https://repairyourlaptop.ae",
-        external: true,
-      },
     ],
   },
 ];
@@ -116,7 +104,7 @@ const socialLinks = [
           <ul class="list-none flex flex-col gap-3">
             {link.links.map((link) => (
               <li>
-                <Link href={link.href} target={link.external ? "_blank" : undefined}>{link.label}</Link>
+                <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
           </ul>
@@ -147,6 +135,66 @@ const socialLinks = [
       </p>
     </div>
   </div>
+  <div class="border-t border-white/10 py-10 mb-6">
+    <div class="text-[0.65rem] tracking-[0.2em] uppercase text-blue3 mb-6">Other Services</div>
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="https://refurbished.maplestar.ae"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 border border-white/15 rounded-lg px-5 py-4 hover:border-blue3/60 hover:bg-white/5 transition-all group"
+      >
+        <div>
+          <div
+            class="text-[0.75rem] font-semibold text-white group-hover:text-blue3 transition-colors"
+          >
+            Refurbished Laptops
+          </div>
+          <div class="text-[0.7rem] text-white/50 mt-0.5">refurbished.maplestar.ae</div>
+        </div>
+        <svg
+          class="w-3.5 h-3.5 text-white/30 group-hover:text-blue3 transition-colors ml-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+      <a
+        href="https://repairyourlaptop.ae"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 border border-white/15 rounded-lg px-5 py-4 hover:border-blue3/60 hover:bg-white/5 transition-all group"
+      >
+        <div>
+          <div
+            class="text-[0.75rem] font-semibold text-white group-hover:text-blue3 transition-colors"
+          >
+            Repair Your Laptop
+          </div>
+          <div class="text-[0.7rem] text-white/50 mt-0.5">repairyourlaptop.ae</div>
+        </div>
+        <svg
+          class="w-3.5 h-3.5 text-white/30 group-hover:text-blue3 transition-colors ml-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
   <div class="border-t border-text pt-7 flex justify-between text-[0.75rem] text-white/80">
     <span>&copy; {new Date().getFullYear()} Maple Star Computers LLC. All rights reserved.</span>
     <span class="text-blue2">ICT Integration &middot; UAE</span>
