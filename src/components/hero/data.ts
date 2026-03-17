@@ -1,6 +1,6 @@
 export const slides = [
   {
-    image: "/corporate-landing/assets/server-knowledge.jpeg",
+    image: "/assets/server-knowledge.jpeg",
     imageClassName: "-scale-x-100",
     badge: "01 — Enterprise ICT Solutions",
     headingLine1: "Powering",
@@ -13,7 +13,7 @@ export const slides = [
     secondaryCta: { label: "Learn More", href: "#about" },
   },
   {
-    image: "/corporate-landing/assets/team-meeting.jpeg",
+    image: "/assets/team-meeting.jpeg",
     badge: "02 — Systems Integration",
     headingLine1: "Your Trusted",
     headingLine2: "Technology",
@@ -25,7 +25,7 @@ export const slides = [
     secondaryCta: { label: "Contact Us", href: "#contact" },
   },
   {
-    image: "/corporate-landing/assets/secure-lock.jpeg",
+    image: "/assets/secure-lock.jpeg",
     badge: "03 — Certified Expertise",
     headingLine1: "Maximum",
     headingLine2: "Security",

@@ -1,6 +1,6 @@
 export const services = [
   {
-    image: "/corporate-landing/assets/server-racks.jpeg",
+    image: "/assets/server-racks.jpeg",
     alt: "Hardware",
     title: "Hardware Infrastructure",
     description: "Complete enterprise hardware from servers to networking equipment.",
@@ -25,7 +25,7 @@ export const services = [
     ],
   },
   {
-    image: "/corporate-landing/assets/connecting-buildings.jpeg",
+    image: "/assets/connecting-buildings.jpeg",
     alt: "Wireless",
     title: "Wireless Solutions",
     description: "Enterprise-grade wireless networking for seamless organizational connectivity.",
@@ -50,7 +50,7 @@ export const services = [
     ],
   },
   {
-    image: "/corporate-landing/assets/cctv.jpeg",
+    image: "/assets/cctv.jpeg",
     alt: "Security",
     title: "Surveillance & Access Control",
     description: "Advanced security systems protecting physical and digital assets.",
@@ -74,7 +74,7 @@ export const services = [
     ],
   },
   {
-    image: "/corporate-landing/assets/disaster-recovery.jpeg",
+    image: "/assets/disaster-recovery.jpeg",
     alt: "Recovery",
     title: "Disaster Recovery Solutions",
     description: "Comprehensive backup and recovery ensuring business continuity.",
@@ -98,7 +98,7 @@ export const services = [
     ],
   },
   {
-    image: "/corporate-landing/assets/connecting-people.jpeg",
+    image: "/assets/connecting-people.jpeg",
     alt: "Telephony",
     title: "IP & Digital Telephony",
     description: "Modern unified communications and VoIP solutions for enterprise needs.",
